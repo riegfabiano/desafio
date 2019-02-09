@@ -5,8 +5,8 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 class UserLogin(Resource):
 	def post(self):
 		parser = reqparse.RequestParser()
-		parser.add_argument('username', help='Campo username não informado', required=True)
-		parser.add_argument('password', help='Campo password não informado', required=True)
+		parser.add_argument('username', help='Campo não informado', required=True)
+		parser.add_argument('password', help='Campo não informado', required=True)
 		data = parser.parse_args()
 
 		if data['username'] != 'admin':
@@ -28,7 +28,7 @@ class DividaCPF(Resource):
 	@jwt_required
 	def get(self):
 		parser = reqparse.RequestParser()
-		parser.add_argument('cpf', help='Campo CPF não informado', required=True)
+		parser.add_argument('cpf', help='Campo não informado', required=True)
 		data = parser.parse_args()
 
 		result = self.__get_cpf_mock(data['cpf'])
