@@ -24,7 +24,7 @@ class UserLogin(Resource):
 			return {'message': 'Credencial inválida'}
 
 
-class SituacaoCPF(Resource):
+class ScoreCPF(Resource):
 	@jwt_required
 	def get(self):
 		parser = reqparse.RequestParser()
@@ -39,14 +39,20 @@ class SituacaoCPF(Resource):
 
 	def __get_info_mock(self, cpf):
 		"""
-		Este método buscaria na base externa A, então fiz uma mock com 10 CPFs diferentes para teste.
+		Este método buscaria na base externa B, então fiz uma mock com 10 CPFs diferentes para teste.
 		Organizei as informações em um dicionário com eu faria ao processar os dados do banco,
 		facilitando depois a conversão para JSON.
 		"""
 
 		mock_base_a_dict = {
 			'55669863402': {
-				'nome': 'Guilherme César Oliver Peixoto',
+				'idade': 18,
+				'bem_list': [
+					{
+						'descicao': 'Carro',
+						'valor': 35000.0
+					}
+				],
 				'endereco': {
 					'logradouro': 'Rua João Fausto de Figueiredo',
 					'numero': 643,
@@ -55,10 +61,20 @@ class SituacaoCPF(Resource):
 					'uf': 'PB',
 					'cep': '58026-037'
 				},
-				'divida_list': []
+				'fonte_renda': {
+					'cnpj': '20562756000131',
+					'razao_social': 'Vitor e Miguel Telas ME',
+					'salario': 1500.5
+				}
 			},
 			'29922693364': {
-				'nome': 'Hugo Luan Fábio Barros',
+				'idade': 24,
+				'bem_list': [
+					{
+						'descicao': 'Carro',
+						'valor': 25000.0
+					}
+				],
 				'endereco': {
 					'logradouro': 'Rua Pio IX',
 					'numero': 356,
@@ -67,17 +83,20 @@ class SituacaoCPF(Resource):
 					'uf': 'PI',
 					'cep': '64019-365'
 				},
-				'divida_list': [
-					{
-						'credor_nome': 'Alana e Caleb Financeira ME',
-						'credor_cnpj': '54.243.428/0001-94',
-						'valor': 800.0,
-						'nr_contrato': '64563457' 
-					}
-				]
+				'fonte_renda': {
+					'cnpj': '74773232000119',
+					'razao_social': 'Stella e Martin Informática Ltda',
+					'salario': 2500.5
+				}
 			},
 			'72488187046': {
-				'nome': 'Antonella Aparecida Milena Nunes',
+				'idade': 19,
+				'bem_list': [
+					{
+						'descicao': 'Carro',
+						'valor': 70000.0
+					}
+				],
 				'endereco': {
 					'logradouro': 'Alameda Boliviana',
 					'numero': 469,
@@ -86,17 +105,24 @@ class SituacaoCPF(Resource):
 					'uf': 'RN',
 					'cep': '59064-747'
 				},
-				'divida_list': [
-					{
-						'credor_nome': 'Maitê e Fátima Eletrônica ME',
-						'credor_cnpj': '58.447.399/0001-33',
-						'valor': 450.04,
-						'nr_contrato': '0498509823' 
-					}
-				]
+				'fonte_renda': {
+					'cnpj': '01932441000194',
+					'razao_social': 'Silvana e Sophie Restaurante Ltda',
+					'salario': 3500.0
+				}
 			},
 			'59029146044': {
-				'nome': 'Isabela Valentina Daniela Silva',
+				'idade': 62,
+				'bem_list': [
+					{
+						'descicao': 'Carro',
+						'valor': 85000.0
+					},
+					{
+						'descricao': 'Casa',
+						'valor': 250000
+					}
+				],
 				'endereco': {
 					'logradouro': 'Travessa Professor Afonso Adinolfi',
 					'numero': 152,
@@ -105,17 +131,20 @@ class SituacaoCPF(Resource):
 					'uf': 'SP',
 					'cep': '01538-010'
 				},
-				'divida_list': [
-					{
-						'credor_nome': 'Diego e Lorena Gráfica ME',
-						'credor_cnpj': '62.918.637/0001-19',
-						'valor': 280.90,
-						'nr_contrato': '01029838' 
-					}
-				]
+				'fonte_renda': {
+					'cnpj': '61904331000140',
+					'razao_social': 'Bryan e Daiane Fotografias ME',
+					'salario': 4000.0
+				}
 			},
 			'75658854016': {
-				'nome': 'Silvana Cláudia Allana Costa',
+				'idade': 50,
+				'bem_list': [
+					{
+						'descicao': 'Moto',
+						'valor': 15000.0
+					}
+				],
 				'endereco': {
 					'logradouro': 'Rua Manoel José de Souza',
 					'numero': 576,
@@ -124,17 +153,20 @@ class SituacaoCPF(Resource):
 					'uf': 'SC',
 					'cep': '88305-565'
 				},
-				'divida_list': [
-					{
-						'credor_nome': 'Arthur e Samuel Eletrônica Ltda',
-						'credor_cnpj': '83.512.565/0001-85',
-						'valor': 2800.0,
-						'nr_contrato': '0875354372' 
-					}
-				]
+				'fonte_renda': {
+					'cnpj': '34632796000117',
+					'razao_social': 'Luiza e Sabrina Buffet Ltda',
+					'salario': 5500.0
+				}
 			},
 			'22477358006': {
-				'nome': 'Anderson Bento Araújo',
+				'idade': 35,
+				'bem_list': [
+					{
+						'descicao': 'Carro',
+						'valor': 50000.0
+					}
+				],
 				'endereco': {
 					'logradouro': 'Rua Joaquim Nabuco',
 					'numero': 341,
@@ -143,17 +175,28 @@ class SituacaoCPF(Resource):
 					'uf': 'RR',
 					'cep': '69304-390'
 				},
-				'divida_list': [
-					{
-						'credor_nome': 'Isabelle e Stefany Adega Ltda',
-						'credor_cnpj': '19.572.833/0001-55',
-						'valor': 100.67,
-						'nr_contrato': '543312' 
-					}
-				]
+				'fonte_renda': {
+					'cnpj': '98986597000190',
+					'razao_social': 'Isabelly e Levi Pizzaria Ltda',
+					'salario': 6500.0
+				}
 			},
 			'59949360498': {
-				'nome': 'Tiago Pietro Thales Corte Real',
+				'idade': 32,
+				'bem_list': [
+					{
+						'descicao': 'Apartamento',
+						'valor': 500000.0
+					},
+					{
+						'descricao': 'Casa',
+						'valor': 300000.0
+					},
+					{
+						'descricao': 'Carro',
+						'valor': 100000.0
+					}
+				],
 				'endereco': {
 					'logradouro': 'Rua Santo Anastácio',
 					'numero': 106,
@@ -162,17 +205,20 @@ class SituacaoCPF(Resource):
 					'uf': 'PR',
 					'cep': '81305-090'
 				},
-				'divida_list': [
-					{
-						'credor_nome': 'Nicole e Enzo Telas ME',
-						'credor_cnpj': '61.515.890/0001-69',
-						'valor': 900.53,
-						'nr_contrato': '90826534' 
-					}
-				]
+				'fonte_renda': {
+					'cnpj': '61314445000130',
+					'razao_social': 'Sarah e Esther Joalheria ME',
+					'salario': 12500.0
+				}
 			},
 			'73223714456': {
-				'nome': 'Lorenzo Cauê Manuel da Rocha',
+				'idade': 20,
+				'bem_list': [
+					{
+						'descicao': 'Apartamento',
+						'valor': 150000.0
+					}
+				],
 				'endereco': {
 					'logradouro': 'Rua Orquídeas',
 					'numero': 941,
@@ -181,17 +227,24 @@ class SituacaoCPF(Resource):
 					'uf': 'RJ',
 					'cep': '25948-195'
 				},
-				'divida_list': [
-					{
-						'credor_nome': 'Luna e Otávio Informática Ltda',
-						'credor_cnpj': '81.277.013/0001-04',
-						'valor': 890.79,
-						'nr_contrato': '8276353' 
-					}
-				]
+				'fonte_renda': {
+					'cnpj': '07789763000102',
+					'razao_social': 'Benedita e Malu Consultoria Financeira Ltda',
+					'salario': 3250.0
+				}
 			},
 			'16663144049': {
-				'nome': 'Vera Isabel Bernardes',
+				'idade': 37,
+				'bem_list': [
+					{
+						'descicao': 'Casa',
+						'valor': 300000.0
+					},
+					{
+						'descricao': 'Moto',
+						'valor': 10000.0
+					}
+				],
 				'endereco': {
 					'logradouro': 'Quadra QR 214 Conjunto P',
 					'numero': 584,
@@ -200,17 +253,24 @@ class SituacaoCPF(Resource):
 					'uf': 'DF',
 					'cep': '72544-416'
 				},
-				'divida_list': [
-					{
-						'credor_nome': 'Clarice e Alexandre Pizzaria ME',
-						'credor_cnpj': '97.335.254/0001-00',
-						'valor': 549.0,
-						'nr_contrato': '60982349' 
-					}
-				]
+				'fonte_renda': {
+					'cnpj': '12928306000191',
+					'razao_social': 'Joaquim e Mateus Eletrônica Ltda',
+					'salario': 3400.0
+				}
 			},
 			'46118742499': {
-				'nome': 'Luciana Giovanna Larissa da Rosa',
+				'idade': 40,
+				'bem_list': [
+					{
+						'descicao': 'Carro',
+						'valor': 15000.0
+					},
+					{
+						'descricao': 'Casa',
+						'valor': 100000.0
+					}
+				],
 				'endereco': {
 					'logradouro': 'Rua Principal 1',
 					'numero': 796,
@@ -219,14 +279,11 @@ class SituacaoCPF(Resource):
 					'uf': 'AC',
 					'cep': '69917-670'
 				},
-				'divida_list': [
-					{
-						'credor_nome': 'Giovanna e Manoel Advocacia Ltda',
-						'credor_cnpj': '30.407.240/0001-76',
-						'valor': 239.39,
-						'nr_contrato': '098234987/87' 
-					}
-				]
+				'fonte_renda': {
+					'cnpj': '08577741000141',
+					'razao_social': 'Maya e Regina Lavanderia Ltda',
+					'salario': 4900.0
+				}
 			}
 		}
 

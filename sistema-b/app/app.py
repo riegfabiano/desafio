@@ -2,7 +2,7 @@ from flask import Flask
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 from resources import UserLogin
-from resources import SituacaoCPF
+from resources import ScoreCPF
 
 
 app = Flask(__name__)
@@ -17,8 +17,8 @@ app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 jwt = JWTManager(app)
 
 api.add_resource(UserLogin, '/login')
-api.add_resource(SituacaoCPF, '/cpf/situacao')
+api.add_resource(ScoreCPF, '/cpf/score')
 
 
 if __name__ == '__main__':
-	app.run(port=5001)
+	app.run(port=5002)
