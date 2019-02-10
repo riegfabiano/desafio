@@ -9,8 +9,8 @@ app = Flask(__name__)
 app.debug = True
 api = Api(app)
 
-app.config['SECRET_KEY'] = "db0cf406-3609-4d94-bfc5-0233f3fa40e0"
-app.config['JWT_SECRET_KEY'] = "a480e639-9713-4a17-ad4f-093232cfe801"
+app.config['SECRET_KEY'] = 'f1c60c25-0a37-43d8-842a-b02faf3306e7'
+app.config['JWT_SECRET_KEY'] = '6a3a824b-507b-4c33-9df8-f49dfb8fe92e'
 #app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 

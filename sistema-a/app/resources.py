@@ -44,7 +44,7 @@ class SituacaoCPF(Resource):
 		facilitando depois a conversão para JSON.
 		"""
 
-		mock_base_a_dict = {
+		mock_base_dict = {
 			'55669863402': {
 				'nome': 'Guilherme César Oliver Peixoto',
 				'endereco': {
@@ -230,4 +230,4 @@ class SituacaoCPF(Resource):
 			}
 		}
 
-		return mock_base_a_dict.get(cpf)
+		return mock_base_dict.get(cpf)

@@ -44,7 +44,7 @@ class ScoreCPF(Resource):
 		facilitando depois a conversão para JSON.
 		"""
 
-		mock_base_a_dict = {
+		mock_base_dict = {
 			'55669863402': {
 				'idade': 18,
 				'bem_list': [
@@ -287,4 +287,4 @@ class ScoreCPF(Resource):
 			}
 		}
 
-		return mock_base_a_dict.get(cpf)
+		return mock_base_dict.get(cpf)
