@@ -1,20 +1,15 @@
-import json
 import requests
 import os
 from flask import Flask
-import graphene
 from flask_graphql import GraphQLView
+import graphene
 
 
-# app initialization
 app = Flask(__name__)
 app.debug = True
 
 
 class Endereco(graphene.ObjectType):
-	# class Meta:
-	# 	default_resolver = dict_resolver
-
 	logradouro = graphene.String()
 	numero = graphene.Int()
 	bairro = graphene.String()
@@ -24,31 +19,24 @@ class Endereco(graphene.ObjectType):
 
 
 class Divida(graphene.ObjectType):
-	# class Meta:
-	# 	default_resolver = dict_resolver
-
-	credor_nome = graphene.String()
-	credor_cnpj = graphene.String()
+	credorNome = graphene.String()
+	credorCnpj = graphene.String()
 	valor = graphene.Float()
-	nr_contrato = graphene.String()
+	nrContrato = graphene.String()
 
 
 class SituacaoCPF(graphene.ObjectType):
-	# class Meta:
-	# 	default_resolver = dict_resolver
-
-	cpf = graphene.String(required=True)
+	cpf = graphene.String()
 	nome = graphene.String()
 	endereco = graphene.Field(Endereco)
-	divida_list = graphene.List(Divida)
+	dividaList = graphene.List(Divida)
 
 
 class Query(graphene.ObjectType):
 	situacao = graphene.Field(SituacaoCPF, cpf=graphene.String(required=True))
 
-	#@classmethod
 	def resolve_situacao(self, info, cpf):
-		import pdb; pdb.set_trace()
+		#import pdb; pdb.set_trace()
 		teste = call_ws(os.getenv('HOST_A', 'localhost'), cpf)
 		return teste
 
@@ -84,6 +72,28 @@ def call_ws(host, cpf):
 
 schema = graphene.Schema(query=Query)
 
+query = """
+{
+	situacao(cpf: "55669863402") {
+		nome
+		endereco {
+			logradouro
+			numero
+			bairro
+			cidade
+			uf
+			cep
+		}
+		dividaList {
+			credorNome
+			credorCnpj
+			valor
+			nrContrato
+		}
+	}
+}
+"""
+
 # Routes
 app.add_url_rule(
 	'/graphql',
@@ -96,6 +106,8 @@ app.add_url_rule(
 
 
 if __name__ == '__main__':
-	app.run()
+	#app.run()
+	# 29922693364
+	# 55669863402
 
-	#print(call_ws('localhost', '29922693364'))
+	print(schema.execute(query).data)

@@ -8,8 +8,10 @@ COPY ./requirements.txt /etc
 
 RUN pip install --no-cache-dir -r /etc/requirements.txt
 
-EXPOSE 5001
+EXPOSE 8080
 
-#ENV NAME World
+ENV HOST_A localhost
+ENV HOST_B localhost
+ENV HOST_C localhost
 
 CMD ["python", "app.py"]
