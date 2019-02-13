@@ -2,43 +2,137 @@ import requests
 import os
 from flask import Flask
 from flask_graphql import GraphQLView
-import graphene
+from graphene import (String, Int, Float, DateTime, List, Schema, Field, ObjectType)
 
 
 app = Flask(__name__)
 app.debug = True
 
 
-class Endereco(graphene.ObjectType):
-	logradouro = graphene.String()
-	numero = graphene.Int()
-	bairro = graphene.String()
-	cidade = graphene.String()
-	uf = graphene.String()
-	cep = graphene.String()
+# --- Situação
+class Endereco(ObjectType):
+	logradouro = String()
+	numero = Int()
+	bairro = String()
+	cidade = String()
+	uf = String()
+	cep = String()
 
 
-class Divida(graphene.ObjectType):
-	credorNome = graphene.String()
-	credorCnpj = graphene.String()
-	valor = graphene.Float()
-	nrContrato = graphene.String()
+class Divida(ObjectType):
+	credorNome = String()
+	credorCnpj = String()
+	valor = Float()
+	nrContrato = String()
 
 
-class SituacaoCPF(graphene.ObjectType):
-	cpf = graphene.String()
-	nome = graphene.String()
-	endereco = graphene.Field(Endereco)
-	dividaList = graphene.List(Divida)
+class SituacaoCPF(ObjectType):
+	cpf = String()
+	nome = String()
+	endereco = Field(Endereco)
+	dividaList = List(Divida)
 
 
-class Query(graphene.ObjectType):
-	situacao = graphene.Field(SituacaoCPF, cpf=graphene.String(required=True))
+# --- Score
+class Bem(ObjectType):
+	descricao = String()
+	valor = Float()
 
-	def resolve_situacao(self, info, cpf):
-		#import pdb; pdb.set_trace()
-		teste = call_ws(os.getenv('HOST_A', 'localhost'), cpf)
-		return teste
+
+class FonteRenda(ObjectType):
+	cnpj = String()
+	razaoSocial = String()
+	salario = Float()
+
+
+class ScoreCPF(ObjectType):
+	idade = Int()
+	bemList = List(Bem)
+	endereco = Field(Endereco)
+	fonte_renda = FonteRenda
+
+
+# --- Evento
+class MovtoFinanceiro(ObjectType):
+	tipo = String()
+	valor = Float()
+	instituicao = String()
+
+
+class UltimaCompraCartao(ObjectType):
+	data = DateTime()
+	valor = Float()
+
+
+class EventoCPF(ObjectType):
+	ultimaConsulta = DateTime()
+	movtoFinanceiroList = List(MovtoFinanceiro)
+	ultimaCompraCartao = Field(UltimaCompraCartao)
+
+
+# --- Geral
+class ConsultaCPF(ObjectType):
+	situacao = Field(SituacaoCPF)
+	score = Field(ScoreCPF)
+	evento = Field(EventoCPF)
+
+
+class Query(ObjectType):
+	login = String(
+		username=String(required=True),
+		password=String(required=True)
+	)
+	consultaCPF = Field(
+		ConsultaCPF,
+		cpf=String(required=True),
+		access_token=String(required=True)
+	)
+
+	def resolve_login(self, info, username, password):
+		return call_ws_login(os.getenv('HOST_A', 'localhost'), username, password)
+
+	def resolve_consultaCPF(self, info, cpf, access_token):
+		return ConsultaCPF(
+			self.__make_situacao(cpf, access_token),
+			self.__make_score(cpf, access_token),
+			self.__make_evento(cpf, access_token)
+		)
+
+	def __make_situacao(self, cpf, access_token):
+		result = call_ws(os.getenv('HOST_A', 'localhost'), cpf, access_token)
+
+		E = Endereco(
+			logradouro=result['endereco']['logradouro'],
+			numero=result['endereco']['numero'],
+			bairro=result['endereco']['bairro'],
+			cidade=result['endereco']['cidade'],
+			uf=result['endereco']['uf'],
+			cep=result['endereco']['cep']
+		)
+		divida_list = []
+
+		for divida_dict in result['divida_list']:
+			divida_list.append(
+				Divida(
+					credorNome=divida_dict['credor_nome'],
+					credorCnpj=divida_dict['credor_cnpj'],
+					nrContrato=divida_dict['nr_contrato'],
+					valor=divida_dict['valor']
+				)
+			)
+
+		return SituacaoCPF(
+			nome=result['nome'],
+			cpf=cpf,
+			endereco=E,
+			dividaList=divida_list
+		)
+
+	def __make_score(self, cpf, access_token):
+		pass
+
+	def __make_evento(self, cpf, access_token):
+		pass
 
 	# def resolve_score(self, info):
 	# 	return call_ws(os.getenv('HOST_B', 'localhost'), info)
@@ -47,21 +141,32 @@ class Query(graphene.ObjectType):
 	# 	return call_ws(os.getenv('HOST_C', 'localhost'), info)
 
 
-def call_ws(host, cpf):
-	# Obtem Token
+def call_ws_login(host, username, password):
+	"""
+	Obtem Token
+	"""
+
 	url = "http://%s:5001/login" % os.getenv('HOST_A', 'localhost')
 	headers = {
 		'Content-Type': 'application/json'
 	}
 	data = {
-		'username': 'admin',
-		'password': 'exemplo'
+		'username': username,
+		'password': password
 	}
-	access_token = requests.post(url, headers=headers, json=data).json()['access_token']
+	return requests.post(url, headers=headers, json=data).json()['access_token']
 
-	# Obtem dados
+
+def call_ws(host, cpf, access_token):
+	"""
+	Obtem dados
+	"""
+
 	url = "http://%s:5001/cpf/situacao" % os.getenv('HOST_A', 'localhost')
-	headers['Authorization'] = 'Bearer %s' % access_token
+	headers = {
+		'Content-Type': 'application/json',
+		'Authorization': 'Bearer %s' % access_token
+	}
 	data = {
 		'cpf': cpf
 	}
@@ -70,11 +175,11 @@ def call_ws(host, cpf):
 	return req.json()
 
 
-schema = graphene.Schema(query=Query)
+schema = Schema(query=Query)
 
 query = """
 {
-	situacao(cpf: "55669863402") {
+	situacao(cpf: "29922693364") {
 		nome
 		endereco {
 			logradouro
@@ -106,8 +211,5 @@ app.add_url_rule(
 
 
 if __name__ == '__main__':
-	#app.run()
-	# 29922693364
-	# 55669863402
-
-	print(schema.execute(query).data)
+	app.run()
+	#print(schema.execute(query).data)

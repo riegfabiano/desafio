@@ -72,7 +72,13 @@ class SituacaoCPF(Resource):
 						'credor_nome': 'Alana e Caleb Financeira ME',
 						'credor_cnpj': '54.243.428/0001-94',
 						'valor': 800.0,
-						'nr_contrato': '64563457' 
+						'nr_contrato': '64563457'
+					},
+					{
+						'credor_nome': 'Maitê e Fátima Eletrônica ME',
+						'credor_cnpj': '58.447.399/0001-33',
+						'valor': 890.1,
+						'nr_contrato': '978676'
 					}
 				]
 			},
@@ -91,7 +97,7 @@ class SituacaoCPF(Resource):
 						'credor_nome': 'Maitê e Fátima Eletrônica ME',
 						'credor_cnpj': '58.447.399/0001-33',
 						'valor': 450.04,
-						'nr_contrato': '0498509823' 
+						'nr_contrato': '0498509823'
 					}
 				]
 			},
@@ -110,7 +116,7 @@ class SituacaoCPF(Resource):
 						'credor_nome': 'Diego e Lorena Gráfica ME',
 						'credor_cnpj': '62.918.637/0001-19',
 						'valor': 280.90,
-						'nr_contrato': '01029838' 
+						'nr_contrato': '01029838'
 					}
 				]
 			},
@@ -129,7 +135,7 @@ class SituacaoCPF(Resource):
 						'credor_nome': 'Arthur e Samuel Eletrônica Ltda',
 						'credor_cnpj': '83.512.565/0001-85',
 						'valor': 2800.0,
-						'nr_contrato': '0875354372' 
+						'nr_contrato': '0875354372'
 					}
 				]
 			},
@@ -148,7 +154,7 @@ class SituacaoCPF(Resource):
 						'credor_nome': 'Isabelle e Stefany Adega Ltda',
 						'credor_cnpj': '19.572.833/0001-55',
 						'valor': 100.67,
-						'nr_contrato': '543312' 
+						'nr_contrato': '543312'
 					}
 				]
 			},
@@ -167,7 +173,7 @@ class SituacaoCPF(Resource):
 						'credor_nome': 'Nicole e Enzo Telas ME',
 						'credor_cnpj': '61.515.890/0001-69',
 						'valor': 900.53,
-						'nr_contrato': '90826534' 
+						'nr_contrato': '90826534'
 					}
 				]
 			},
@@ -186,7 +192,7 @@ class SituacaoCPF(Resource):
 						'credor_nome': 'Luna e Otávio Informática Ltda',
 						'credor_cnpj': '81.277.013/0001-04',
 						'valor': 890.79,
-						'nr_contrato': '8276353' 
+						'nr_contrato': '8276353'
 					}
 				]
 			},
@@ -205,7 +211,7 @@ class SituacaoCPF(Resource):
 						'credor_nome': 'Clarice e Alexandre Pizzaria ME',
 						'credor_cnpj': '97.335.254/0001-00',
 						'valor': 549.0,
-						'nr_contrato': '60982349' 
+						'nr_contrato': '60982349'
 					}
 				]
 			},
@@ -224,7 +230,7 @@ class SituacaoCPF(Resource):
 						'credor_nome': 'Giovanna e Manoel Advocacia Ltda',
 						'credor_cnpj': '30.407.240/0001-76',
 						'valor': 239.39,
-						'nr_contrato': '098234987/87' 
+						'nr_contrato': '098234987/87'
 					}
 				]
 			}
