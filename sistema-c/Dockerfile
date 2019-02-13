@@ -1,15 +1,22 @@
 FROM python:3.4.9-alpine
 
+RUN apk add --virtual .build-dependencies \
+            --no-cache \
+            python3-dev \
+            build-base \
+            linux-headers \
+            pcre-dev
+
+RUN apk add --no-cache pcre
+
 WORKDIR /app
+COPY /app /app
+COPY ./requirements.txt /app
 
-ADD ./app /app
+RUN pip install -r /app/requirements.txt
 
-COPY ./requirements.txt /etc
+RUN apk del .build-dependencies && rm -rf /var/cache/apk/*
 
-RUN pip install --no-cache-dir -r /etc/requirements.txt
+EXPOSE 5000
 
-EXPOSE 5003
-
-#ENV NAME World
-
-CMD ["python", "app.py"]
+CMD ["uwsgi", "--ini", "/app/wsgi.ini"]
