@@ -10,7 +10,6 @@ api = Api(app)
 
 app.config['SECRET_KEY'] = "db0cf406-3609-4d94-bfc5-0233f3fa40e0"
 app.config['JWT_SECRET_KEY'] = "a480e639-9713-4a17-ad4f-093232cfe801"
-#app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 
 jwt = JWTManager(app)
@@ -20,4 +19,4 @@ api.add_resource(SituacaoCPF, '/cpf/situacao')
 
 
 if __name__ == '__main__':
-	app.run('0.0.0.0', port=5001, debug=True)
+	app.run(host='0.0.0.0')
