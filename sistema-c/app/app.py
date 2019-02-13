@@ -6,7 +6,6 @@ from resources import EventoCPF
 
 
 app = Flask(__name__)
-app.debug = True
 api = Api(app)
 
 app.config['SECRET_KEY'] = '0fec2613-6739-42ce-ac64-21bc53898d1d'
@@ -21,4 +20,4 @@ api.add_resource(EventoCPF, '/cpf/evento')
 
 
 if __name__ == '__main__':
-	app.run(port=5003)
+	app.run('0.0.0.0', port=5003, debug=True)

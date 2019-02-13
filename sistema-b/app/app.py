@@ -6,7 +6,6 @@ from resources import ScoreCPF
 
 
 app = Flask(__name__)
-app.debug = True
 api = Api(app)
 
 app.config['SECRET_KEY'] = 'f1c60c25-0a37-43d8-842a-b02faf3306e7'
@@ -21,4 +20,4 @@ api.add_resource(ScoreCPF, '/cpf/score')
 
 
 if __name__ == '__main__':
-	app.run(port=5002)
+	app.run('0.0.0.0', port=5002, debug=True)

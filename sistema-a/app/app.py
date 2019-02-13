@@ -6,7 +6,6 @@ from resources import SituacaoCPF
 
 
 app = Flask(__name__)
-app.debug = True
 api = Api(app)
 
 app.config['SECRET_KEY'] = "db0cf406-3609-4d94-bfc5-0233f3fa40e0"
@@ -21,4 +20,4 @@ api.add_resource(SituacaoCPF, '/cpf/situacao')
 
 
 if __name__ == '__main__':
-	app.run(port=5001)
+	app.run('0.0.0.0', port=5001, debug=True)
