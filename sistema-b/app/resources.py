@@ -49,7 +49,7 @@ class ScoreCPF(Resource):
 				'idade': 18,
 				'bem_list': [
 					{
-						'descicao': 'Carro',
+						'descricao': 'Carro',
 						'valor': 35000.0
 					}
 				],
@@ -71,7 +71,7 @@ class ScoreCPF(Resource):
 				'idade': 24,
 				'bem_list': [
 					{
-						'descicao': 'Carro',
+						'descricao': 'Carro',
 						'valor': 25000.0
 					}
 				],
@@ -93,7 +93,7 @@ class ScoreCPF(Resource):
 				'idade': 19,
 				'bem_list': [
 					{
-						'descicao': 'Carro',
+						'descricao': 'Carro',
 						'valor': 70000.0
 					}
 				],
@@ -115,7 +115,7 @@ class ScoreCPF(Resource):
 				'idade': 62,
 				'bem_list': [
 					{
-						'descicao': 'Carro',
+						'descricao': 'Carro',
 						'valor': 85000.0
 					},
 					{
@@ -141,7 +141,7 @@ class ScoreCPF(Resource):
 				'idade': 50,
 				'bem_list': [
 					{
-						'descicao': 'Moto',
+						'descricao': 'Moto',
 						'valor': 15000.0
 					}
 				],
@@ -163,7 +163,7 @@ class ScoreCPF(Resource):
 				'idade': 35,
 				'bem_list': [
 					{
-						'descicao': 'Carro',
+						'descricao': 'Carro',
 						'valor': 50000.0
 					}
 				],
@@ -185,7 +185,7 @@ class ScoreCPF(Resource):
 				'idade': 32,
 				'bem_list': [
 					{
-						'descicao': 'Apartamento',
+						'descricao': 'Apartamento',
 						'valor': 500000.0
 					},
 					{
@@ -215,7 +215,7 @@ class ScoreCPF(Resource):
 				'idade': 20,
 				'bem_list': [
 					{
-						'descicao': 'Apartamento',
+						'descricao': 'Apartamento',
 						'valor': 150000.0
 					}
 				],
@@ -237,7 +237,7 @@ class ScoreCPF(Resource):
 				'idade': 37,
 				'bem_list': [
 					{
-						'descicao': 'Casa',
+						'descricao': 'Casa',
 						'valor': 300000.0
 					},
 					{
@@ -263,7 +263,7 @@ class ScoreCPF(Resource):
 				'idade': 40,
 				'bem_list': [
 					{
-						'descicao': 'Carro',
+						'descricao': 'Carro',
 						'valor': 15000.0
 					},
 					{
