@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "517a8cbb-2408-47c5-9974-43b772e4ce84",
+		"name": "Desafio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "exemplo",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "desafio-sistema-c.westus.azurecontainer.io:5000/login",
+					"host": [
+						"desafio-sistema-c",
+						"westus",
+						"azurecontainer",
+						"io"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CPF Situação",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MiLCJuYmYiOjE1NTAxMDA0NTksImV4cCI6MTU1MDEwMTM1OSwiaWF0IjoxNTUwMTAwNDU5LCJqdGkiOiI3ZDllNzEwYi00YTk3LTRiMjAtOTM3Mi04MmVmNzZjZjg3MGQiLCJpZGVudGl0eSI6ImFkbWluIn0.M3dcorJRNVR0AzxWhRimf4IW1vOIL13GUQvI2HBhvfQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cpf",
+							"value": "299.226.933-64",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "desafio-sistema-a.westus.azurecontainer.io:5000/cpf/situacao",
+					"host": [
+						"desafio-sistema-a",
+						"westus",
+						"azurecontainer",
+						"io"
+					],
+					"port": "5000",
+					"path": [
+						"cpf",
+						"situacao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CPF Score",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE1NTAxMDA1ODIsImp0aSI6ImFkM2M4MThmLWE5YTAtNGIwNS04ZTRiLTQyNDlhNWQ1ZjBmMCIsInR5cGUiOiJhY2Nlc3MiLCJmcmVzaCI6ZmFsc2UsImlkZW50aXR5IjoiYWRtaW4iLCJleHAiOjE1NTAxMDE0ODIsImlhdCI6MTU1MDEwMDU4Mn0.i6J6nRfuFExidxO21LBAbvP4hfts9lUnDjq6TVpT7Hc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cpf",
+							"value": "299.226.933-64",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "desafio-sistema-b.westus.azurecontainer.io:5000/cpf/score",
+					"host": [
+						"desafio-sistema-b",
+						"westus",
+						"azurecontainer",
+						"io"
+					],
+					"port": "5000",
+					"path": [
+						"cpf",
+						"score"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CPF Evento",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE1NTAxMDA3NDUsImZyZXNoIjpmYWxzZSwiaWF0IjoxNTUwMTAwNzQ1LCJ0eXBlIjoiYWNjZXNzIiwiaWRlbnRpdHkiOiJhZG1pbiIsImV4cCI6MTU1MDEwMTY0NSwianRpIjoiN2JlZTFjZDQtMzFhZC00YTFlLWIxZGMtOTJiY2I2YWQ0OWY4In0.95dOCXHYSJ5DOiMv_PJjxx-1YNDyIGTS_QFR3cP7vfo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cpf",
+							"value": "299.226.933-64",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "desafio-sistema-c.westus.azurecontainer.io:5000/cpf/evento",
+					"host": [
+						"desafio-sistema-c",
+						"westus",
+						"azurecontainer",
+						"io"
+					],
+					"port": "5000",
+					"path": [
+						"cpf",
+						"evento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GraohQL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "desafio-graphql-server.westus.azurecontainer.io:5000/graphql?query={\n  consultaCPF(cpf: \"299.226.933-64\", username: \"admin\", password: \"exemplo\"){\n    situacao {\n      cpf\n      nome\n      endereco {\n        logradouro\n        numero\n        bairro\n        cidade\n        uf\n        cep\n      }\n      dividaList {\n        credorNome\n        credorCnpj\n        valor\n        nrContrato\n      }\n    }\n    score {\n      idade\n      bemList {\n        descricao\n        valor\n      }\n      fonteRenda {\n        cnpj\n        razaoSocial\n        salario\n      }\n    }\n    evento {\n      ultimaConsulta\n      movtoFinanceiroList {\n        tipo\n        valor\n        instituicao\n      }\n      ultimaCompraCartao {\n        data\n        valor\n      }\n    }\n  }\n}",
+					"host": [
+						"desafio-graphql-server",
+						"westus",
+						"azurecontainer",
+						"io"
+					],
+					"port": "5000",
+					"path": [
+						"graphql"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{\n  consultaCPF(cpf: \"299.226.933-64\", username: \"admin\", password: \"exemplo\"){\n    situacao {\n      cpf\n      nome\n      endereco {\n        logradouro\n        numero\n        bairro\n        cidade\n        uf\n        cep\n      }\n      dividaList {\n        credorNome\n        credorCnpj\n        valor\n        nrContrato\n      }\n    }\n    score {\n      idade\n      bemList {\n        descricao\n        valor\n      }\n      fonteRenda {\n        cnpj\n        razaoSocial\n        salario\n      }\n    }\n    evento {\n      ultimaConsulta\n      movtoFinanceiroList {\n        tipo\n        valor\n        instituicao\n      }\n      ultimaCompraCartao {\n        data\n        valor\n      }\n    }\n  }\n}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
