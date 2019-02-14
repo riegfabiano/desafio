@@ -8,10 +8,10 @@ COPY ./requirements.txt /etc
 
 RUN pip install --no-cache-dir -r /etc/requirements.txt
 
-EXPOSE 8080
+EXPOSE 5000
 
-ENV HOST_A localhost
-ENV HOST_B localhost
-ENV HOST_C localhost
+ENV HOST_A desafio-sistema-a.westus.azurecontainer.io
+ENV HOST_B desafio-sistema-b.westus.azurecontainer.io
+ENV HOST_C desafio-sistema-c.westus.azurecontainer.io
 
 CMD ["python", "app.py"]
