@@ -6,16 +6,16 @@ Abaixo descrevo como seria a arquitetura e stack usadas para resolver o problema
 Escrever os sistemas em arquitetura de micro serviço, com a linguagem Python e que seja executado dentro de um container Docker para posterior deploy em nuvem pública. Este micro serviço deve ter seus Endpoints expostos via API REST usando o framework Flask, com autenticação JWT.
 Este sistema deve disponibilizar os dados através de um Endpoint que deve receber como parâmetro um CPF.
 
-E para disponibilizar os dados utilizei o GraphQL fazendo a junção das 3 API de forma transparente para os clientes, que podem utilizar das mais diversas formas possíveis os dados retornados.
+E para disponibilizar os dados utilizar o GraphQL fazendo a junção das 3 APIs de forma transparente para os possíveis clients, que podem utilizar das mais diversas formas possíveis os dados retornados.
 
 
 # Informações para execução dos sistemas de exemplo:
 
 As APIs dos serviços estão disponíveis também em containers no Docker Hub em riegfabiano/desafio,
-além disso disponibilizei os serviços no Azure que podem ser acessados conforme abaixo:
+além disso disponibilizei os serviços no Azure que podem ser acessados conforme abaixo - se a conta trial não expirar ;)
 
 As APIs de consulta de dados abaixo possuem um Endpoint "/login" para obter o Token de acesso aos dados disponibilizados pelos
-Endpoints de cada um, utilizei usuário e senha padrões que são respectivamente "admin" e "exemplo".
+Endpoints de consulta cada serviço, utilizei usuário e senha padrões que são respectivamente "admin" e "exemplo".
 
 * desafio-sistema-a.westus.azurecontainer.io:5000/cpf/situacao
 * desafio-sistema-b.westus.azurecontainer.io:5000/cpf/score
@@ -73,6 +73,6 @@ Exemplo de consulta:
 }
 
 Para executar o sistema na máquina local é só subir a imagem Docker ou através dos fontes executando python app/app.py na pasta
-app de cada sistema.
+app do sistema desejado.
 
 * Todos os serviços rodam na porta 5000.
